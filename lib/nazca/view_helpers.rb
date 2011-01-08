@@ -44,7 +44,12 @@ module Nazca
 			
 			options.merge!(@tags)
       
-    	title = [site_name, options[:separator], options[:title]]
+    	if options[:title].to_s.length > 0 # maybe use ActiveSupport and .present? method
+    	  title = [site_name, options[:separator], options[:title]]
+  	  else
+  	    title = [site_name]
+	    end
+	    
 			title.reverse! if options[:reverse]
 			result << content_tag(:title, title.join(' '))
 

@@ -5,6 +5,10 @@ describe Nazca::ViewHelpers do
     @template = ActionView::Base.new
   end
   
+  it "should output base title only if there was no explicit title set earlier" do
+    @template.meta_tags("My site").should == "<title>My site</title>"
+  end
+  
   it "should return the title after setting it" do
     @template.title("Test title").should == "Test title"
   end
@@ -29,14 +33,33 @@ describe Nazca::ViewHelpers do
     @template.meta_tags("My site", :separator => "::").should == "<title>My site :: Test title</title>"
   end
   
-  it "should display keywords meta tag" do
+  it "should display keywords meta tag (setting with meta_tags method)" do
     @template.title "Test title"
     @template.meta_tags("My site", :keywords => "my,key,word").should == "<title>My site | Test title</title><meta content=\"my,key,word\" name=\"keywords\" />"
   end
   
-  it "should add description meta tag" do
+  it "should display keywords meta tag (setting with seperate method)" do
+    @template.title "Test title"
+    @template.keywords "my,key,word"
+    @template.meta_tags("My site").should == "<title>My site | Test title</title><meta content=\"my,key,word\" name=\"keywords\" />"
+  end
+  
+  it "should add description meta tag (setting with meta_tags method)" do
     @template.title "Test title"
     @template.meta_tags("My site", :description => "Cute girls programming Ruby.").should == "<title>My site | Test title</title><meta content=\"Cute girls programming Ruby.\" name=\"description\" />"
+  end
+  
+  it "should add description meta tag (setting with seperate method)" do
+    @template.title "Test title"
+    @template.description "Cute girls programming Ruby."
+    @template.meta_tags("My site").should == "<title>My site | Test title</title><meta content=\"Cute girls programming Ruby.\" name=\"description\" />"
+  end
+  
+  it "should add both description and keywords meta tag" do
+    @template.title "Test title"
+    @template.description "Cute girls programming Ruby."
+    @template.keywords "my,key,word"
+    @template.meta_tags("My site").should == "<title>My site | Test title</title><meta content=\"Cute girls programming Ruby.\" name=\"description\" /><meta content=\"my,key,word\" name=\"keywords\" />"
   end
   
   it "should be included in ActionView::Base" do
