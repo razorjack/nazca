@@ -28,6 +28,11 @@ describe Nazca::ViewHelpers do
     @template.meta_tags("My site").should == "<title>My site | OMG, just found 3 kg of 235U in my attic</title>"
   end
   
+  it "should deal with ampersand-escaped entities" do
+    @template.title "Uh, uh, time for some corporate &copy;!"
+    @template.meta_tags("My site").should == "<title>My site | Uh, uh, time for some corporate &copy;!</title>"
+  end
+  
   it "should change title separator with :separator option" do
     @template.title "Test title"
     @template.meta_tags("My site", :separator => "::").should == "<title>My site :: Test title</title>"

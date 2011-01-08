@@ -6,7 +6,7 @@ module Nazca
     end
   
     def title(t)
-      tag!(:title => normalize(t).gsub(/<\/?[^>]*>/, ""))
+      tag!(:title => normalize(t))
       t
     end
   
@@ -51,18 +51,17 @@ module Nazca
 	    end
 	    
 			title.reverse! if options[:reverse]
-			result << content_tag(:title, title.join(' '))
+			result << content_tag(:title, title.join(' ').html_safe)
 
      	result << tag(:meta, :name => :description, :content => options[:description]) if options[:description]
 			result << tag(:meta, :name => :keywords, :content => options[:keywords]) if options[:keywords]
-
       return result.html_safe
     end
   
     private
   		# Normalizes output string so that it's tags are stripped
 			def normalize(str)
-				strip_tags(str)
+				str.gsub(/<\/?[^>]*>/, "")
 			end
   end
 end
