@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Jacek Galanciak"]
   s.email       = ["jacek.galanciak@gmail.com"]
-  s.homepage    = "http://razorjack.net"
+  s.homepage    = "http://github.com/razorjack/nazca"
   s.summary     = %q{Meta tags for Rails 3 views.}
   s.description = %q{Rails 3 plugin that makes title and meta tags (keywords, description) easy and manageable.}
 
