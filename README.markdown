@@ -25,19 +25,19 @@ You can specify the title inside a header tag as the `title` method returns the 
 
     <h1><%= title "Creating a post" %></h1>
 
-You can reverse the order (ie. the subtitle first and the site name last):
+### Reversing order
 
     <%= meta_tags "My awesome little site", :reverse => true %>
     
 which yields `<title>Creating a new post | My awesome little site</title>`
 
-It's possible to set custom separator
+### Setting a custom separator
 
     <%= meta_tags "My awesome little site", :reverse => true, :separator => "::" %>
     <title>Creating a new post :: My awesome little site</title>
     
     
-Setting description and keywords meta tag:
+### Setting description and keywords meta tag:
 
     <% title "Creating a post" %>
     <% keywords "omg,they,are,so,hot" %>
@@ -54,7 +54,7 @@ Because I respect MVC. Meta tags are views-specific.
   
 ## Ruby 1.9?
 
-Yup. Do you still use 1.8?
+Both 1.8 and 1.9.
 
 ## Rails 2?
 
