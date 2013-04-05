@@ -7,7 +7,7 @@ module Nazca
       ActionView::Base.send(:include, Nazca::ViewHelpers)
     end
     
-    initializer 'paperclip.insert_into_active_record' do
+    initializer 'nazca.insert_into_action_view' do
       ActiveSupport.on_load :action_view do
         Nazca::Railtie.insert!
       end
