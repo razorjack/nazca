@@ -51,10 +51,6 @@ which yields `<title>Creating a new post | My awesome little site</title>`
 ## Why there are no controller methods to globally set up meta tags?
 
 Because I respect MVC. Meta tags are views-specific.
-  
-## Ruby 1.9?
-
-Both 1.8 and 1.9.
 
 ## Rails 2?
 
