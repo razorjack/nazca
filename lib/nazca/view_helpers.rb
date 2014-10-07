@@ -15,7 +15,7 @@ module Nazca
       k
     end
   
-     def description(d)
+    def description(d)
       tag!(:description => normalize(d))
       d
     end
