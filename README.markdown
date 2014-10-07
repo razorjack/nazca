@@ -40,13 +40,13 @@ which yields `<title>Creating a new post | My awesome little site</title>`
 ### Setting description and keywords meta tag:
 
     <% title "Creating a post" %>
-    <% keywords "omg,they,are,so,hot" %>
-    <% description "Cute girls programming Ruby." %>
+    <% keywords "omg,so,sweet" %>
+    <% description "Cute cats programming Ruby." %>
     <%= meta_tags "My awesome little site" %>
 
     <title>My awesome little site | Creating a post</title>
-    <meta content="Cute girls programming Ruby." name="description" />
-    <meta content="omg,they,are,so,hot" name="keywords" />
+    <meta content="Cute cats programming Ruby." name="description" />
+    <meta content="omg,so,sweet" name="keywords" />
   
 ## Why there are no controller methods to globally set up meta tags?
 
