@@ -1,8 +1,8 @@
 module Nazca
   module ViewHelpers
     def tag!(tags = {})
-      @tags ||= {}
-      @tags.merge!(tags)
+      @_nazca_tags ||= {}
+      @_nazca_tags.merge!(tags)
     end
   
     def title(t)
@@ -37,12 +37,12 @@ module Nazca
 
     def meta_tags(site_name, options = {})
       result = ""
-      @tags ||= {}
+      @_nazca_tags ||= {}
 
       options[:separator] ||= "|"
       options[:reversed] ||= false
       
-      options.merge!(@tags)
+      options.merge!(@_nazca_tags)
       
       if options[:title].to_s.length > 0 # maybe use ActiveSupport and .present? method
         title = [site_name, options[:separator], options[:title]]
