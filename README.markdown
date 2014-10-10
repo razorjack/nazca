@@ -2,6 +2,8 @@
 
 Nazca is a Rails 3 / Rails 4 plugin to easily deal with all your `<title>` and `<meta>` tags, making your app more usable for people and more visible for search engines.
 
+[![Build Status](https://travis-ci.org/razorjack/nazca.svg?branch=master)](https://travis-ci.org/razorjack/nazca)
+
 ## Why?
 
 Using instance variables for this purpose seemed so scruffy. Wrapping some code in this little plugin made my layout templates much smaller and cleaner as I could add all my meta tags in a single line of code.
