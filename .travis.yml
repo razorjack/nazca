@@ -1,6 +1,7 @@
 language: ruby
 before_install:
   - gem install bundler
+install: bundle install --jobs=1 --retry=3
 
 notifications:
   email: false
