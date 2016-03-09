@@ -51,20 +51,20 @@ describe Nazca::ViewHelpers do
   
   it "should add description meta tag (setting with meta_tags method)" do
     @template.title "Test title"
-    @template.meta_tags("My site", :description => "Cute girls programming Ruby.").should == "<title>My site | Test title</title><meta content=\"Cute girls programming Ruby.\" name=\"description\" />"
+    @template.meta_tags("My site", :description => "Cute cats programming Ruby.").should == "<title>My site | Test title</title><meta content=\"Cute cats programming Ruby.\" name=\"description\" />"
   end
   
   it "should add description meta tag (setting with seperate method)" do
     @template.title "Test title"
-    @template.description "Cute girls programming Ruby."
-    @template.meta_tags("My site").should == "<title>My site | Test title</title><meta content=\"Cute girls programming Ruby.\" name=\"description\" />"
+    @template.description "Cute cats programming Ruby."
+    @template.meta_tags("My site").should == "<title>My site | Test title</title><meta content=\"Cute cats programming Ruby.\" name=\"description\" />"
   end
   
   it "should add both description and keywords meta tag" do
     @template.title "Test title"
-    @template.description "Cute girls programming Ruby."
+    @template.description "Cute cats programming Ruby."
     @template.keywords "my,key,word"
-    @template.meta_tags("My site").should == "<title>My site | Test title</title><meta content=\"Cute girls programming Ruby.\" name=\"description\" /><meta content=\"my,key,word\" name=\"keywords\" />"
+    @template.meta_tags("My site").should == "<title>My site | Test title</title><meta content=\"Cute cats programming Ruby.\" name=\"description\" /><meta content=\"my,key,word\" name=\"keywords\" />"
   end
   
   it "should be included in ActionView::Base" do
