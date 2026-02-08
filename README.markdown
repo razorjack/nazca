@@ -33,7 +33,7 @@ You can specify the title inside a header tag as the `title` method returns the 
 ### Reversing order
 
 ```erb
-<%= meta_tags "My awesome little site", :reverse => true %>
+<%= meta_tags "My awesome little site", reverse: true %>
 ```
 
 which yields `<title>Creating a new post | My awesome little site</title>`
@@ -41,30 +41,35 @@ which yields `<title>Creating a new post | My awesome little site</title>`
 ### Setting a custom separator
 
 ```erb
-<%= meta_tags "My awesome little site", :reverse => true, :separator => "::" %>
+<%= meta_tags "My awesome little site", reverse: true, separator: "::" %>
+```
+
+yields:
+
+```html
 <title>Creating a new post :: My awesome little site</title>
 ```
 
-### Setting description and keywords meta tag:
+### Setting description and keywords meta tags
 
 ```erb
 <% title "Creating a post" %>
 <% keywords "omg,so,sweet" %>
 <% description "Cute cats programming Ruby." %>
 <%= meta_tags "My awesome little site" %>
-
-<title>My awesome little site | Creating a post</title>
-<meta content="Cute cats programming Ruby." name="description" />
-<meta content="omg,so,sweet" name="keywords" />
 ```
 
-## Why there are no controller methods to globally set up meta tags?
+yields:
 
-Because I respect MVC. Meta tags are views-specific.
+```html
+<title>My awesome little site | Creating a post</title>
+<meta name="description" content="Cute cats programming Ruby." />
+<meta name="keywords" content="omg,so,sweet" />
+```
 
-## Rails 2?
+## Why are there no controller methods to globally set up meta tags?
 
-Fork you.
+Because I respect MVC. Meta tags are view-specific.
 
 ## License
 
