@@ -1,8 +1,6 @@
 # nazca
 
-Nazca is a Rails 3 / Rails 4 plugin to easily deal with all your `<title>` and `<meta>` tags, making your app more usable for people and more visible for search engines.
-
-[![Build Status](https://travis-ci.org/razorjack/nazca.svg?branch=master)](https://travis-ci.org/razorjack/nazca)
+Nazca is a Rails plugin to easily deal with all your `<title>` and `<meta>` tags, making your app more usable for people and more visible for search engines.
 
 ## Why?
 

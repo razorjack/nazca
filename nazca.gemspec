@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
-require "nazca/version"
+require_relative "lib/nazca/version"
 
 Gem::Specification.new do |s|
   s.name        = "nazca"
@@ -8,18 +7,17 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Jacek Galanciak"]
   s.email       = ["jacek.galanciak@gmail.com"]
-  s.homepage    = "http://github.com/razorjack/nazca"
-  s.summary     = %q{Meta tags for Rails 3 / Rails 4 views.}
-  s.description = %q{Rails 3 / Rails 4 plugin that makes title and meta tags (keywords, description) easy and manageable.}
+  s.homepage    = "https://github.com/razorjack/nazca"
+  s.summary     = %q{Meta tags for Rails views.}
+  s.description = %q{Rails plugin that makes title and meta tags (keywords, description) easy and manageable.}
+  s.license     = "MIT"
 
-  s.rubyforge_project = "nazca"
+  s.required_ruby_version = ">= 3.0"
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.files         = `git ls-files`.split("\n").select { |f| File.exist?(f) }.reject { |f| f.match(%r{^(spec/|gemfiles/)}) }
   s.require_paths = ["lib"]
-  
-  s.add_dependency("rails", [">= 3.0"])
-  
-  s.add_development_dependency "rspec", ["~> 2.0"]
+
+  s.add_dependency("rails", [">= 7.0"])
+
+  s.add_development_dependency "rspec", ["~> 3.0"]
 end
