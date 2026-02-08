@@ -36,7 +36,7 @@ module Nazca
   
 
     def meta_tags(site_name, options = {})
-      result = ""
+      result = +""
       @_nazca_tags ||= {}
 
       options[:separator] ||= "|"
