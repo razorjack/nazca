@@ -1,67 +1,65 @@
+# frozen_string_literal: true
+
 module Nazca
   module ViewHelpers
     def tag!(tags = {})
       @_nazca_tags ||= {}
       @_nazca_tags.merge!(tags)
     end
-  
-    def title(t)
-      tag!(:title => normalize(t))
-      t
+
+    def title(text)
+      tag!(title: normalize(text))
+      text
     end
-  
-    def keywords(k)
-      tag!(:keywords => normalize(k))
-      k
+
+    def keywords(words)
+      tag!(keywords: normalize(words))
+      words
     end
-  
-    def description(d)
-      tag!(:description => normalize(d))
-      d
+
+    def description(text)
+      tag!(description: normalize(text))
+      text
     end
- 
 
     def noindex
-      tag!(:noindex => true)
+      tag!(noindex: true)
     end
- 
 
-    def nofollow(nofollow)
-      tag!(:nofollow => true)
+    def nofollow
+      tag!(nofollow: true)
     end
 
     def canonical(href)
-      tag!(:canonical => true)
+      tag!(canonical: href)
+      href
     end
-  
 
-    def meta_tags(site_name, options = {})
+    def meta_tags(site_name, separator: "|", reverse: false, **options)
+      tags = options.merge(@_nazca_tags || {})
+
+      title_parts = tags[:title].to_s.empty? ? [site_name] : [site_name, separator, tags[:title]]
+      title_parts.reverse! if reverse
+
       result = +""
-      @_nazca_tags ||= {}
+      result << content_tag(:title, title_parts.join(" ").html_safe)
+      result << tag(:meta, name: :description, content: tags[:description]) if tags[:description]
+      result << tag(:meta, name: :keywords, content: tags[:keywords]) if tags[:keywords]
 
-      options[:separator] ||= "|"
-      options[:reversed] ||= false
-      
-      options.merge!(@_nazca_tags)
-      
-      if options[:title].to_s.length > 0 # maybe use ActiveSupport and .present? method
-        title = [site_name, options[:separator], options[:title]]
-      else
-        title = [site_name]
-      end
-      
-      title.reverse! if options[:reverse]
-      result << content_tag(:title, title.join(' ').html_safe)
+      robots = []
+      robots << "noindex" if tags[:noindex]
+      robots << "nofollow" if tags[:nofollow]
+      result << tag(:meta, name: :robots, content: robots.join(", ")) if robots.any?
+      result << tag(:link, rel: :canonical, href: tags[:canonical]) if tags[:canonical]
 
-      result << tag(:meta, :name => :description, :content => options[:description]) if options[:description]
-      result << tag(:meta, :name => :keywords, :content => options[:keywords]) if options[:keywords]
-      return result.html_safe
+      result.html_safe
     end
-  
+
     private
-      # Normalizes output string so that it's tags are stripped
-      def normalize(str)
-        str.gsub(/<\/?[^>]*>/, "")
-      end
+
+    # Strips any HTML tags from the value so meta content stays plain text.
+    def normalize(string)
+      string.gsub(/<\/?[^>]*>/, "")
+    end
   end
 end

@@ -1,3 +1,5 @@
-require 'nazca/railtie'
-require 'nazca/view_helpers'
+# frozen_string_literal: true
 
+require "nazca/version"
+require "nazca/view_helpers"
+require "nazca/railtie"

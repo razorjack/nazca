@@ -1,5 +1,6 @@
-require 'nazca'
-require 'rails/railtie'
+# frozen_string_literal: true
+
+require "rails/railtie"
 
 module Nazca
   class Railtie < Rails::Railtie
@@ -7,7 +8,7 @@ module Nazca
       ActionView::Base.include(Nazca::ViewHelpers)
     end
 
-    initializer 'nazca.insert_into_action_view' do
+    initializer "nazca.insert_into_action_view" do
       ActiveSupport.on_load :action_view do
         Nazca::Railtie.insert!
       end

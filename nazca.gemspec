@@ -1,23 +1,31 @@
-# -*- encoding: utf-8 -*-
+# frozen_string_literal: true
+
 require_relative "lib/nazca/version"
 
-Gem::Specification.new do |s|
-  s.name        = "nazca"
-  s.version     = Nazca::VERSION
-  s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Jacek Galanciak"]
-  s.email       = ["jacek.galanciak@gmail.com"]
-  s.homepage    = "https://github.com/razorjack/nazca"
-  s.summary     = %q{Meta tags for Rails views.}
-  s.description = %q{Rails plugin that makes title and meta tags (keywords, description) easy and manageable.}
-  s.license     = "MIT"
+Gem::Specification.new do |spec|
+  spec.name = "nazca"
+  spec.version = Nazca::VERSION
+  spec.authors = ["Jacek Galanciak"]
+  spec.email = ["jacek.galanciak@gmail.com"]
+  spec.homepage = "https://github.com/razorjack/nazca"
+  spec.summary = "Meta tags for Rails views."
+  spec.description = "Rails gem that makes title and meta tags (keywords, description) easy and manageable."
+  spec.license = "MIT"
 
-  s.required_ruby_version = ">= 3.0"
+  spec.required_ruby_version = ">= 3.3"
 
-  s.files         = `git ls-files`.split("\n").select { |f| File.exist?(f) }.reject { |f| f.match(%r{^(spec/|gemfiles/)}) }
-  s.require_paths = ["lib"]
+  spec.metadata = {
+    "source_code_uri" => spec.homepage,
+    "bug_tracker_uri" => "#{spec.homepage}/issues",
+    "rubygems_mfa_required" => "true"
+  }
 
-  s.add_dependency("rails", [">= 7.0"])
+  spec.files = `git ls-files -z`.split("\x0").select { |f| f.start_with?("lib/", "README", "MIT-LICENSE") }
+  spec.require_paths = ["lib"]
 
-  s.add_development_dependency "rspec", ["~> 3.0"]
+  spec.add_dependency "actionview", ">= 7.2"
+  spec.add_dependency "railties", ">= 7.2"
+
+  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "standard", ">= 1.50"
 end
